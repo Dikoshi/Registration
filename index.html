@@ -2,65 +2,268 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Вход / Регистрация</title>
-    <link rel="stylesheet" href="css/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Система регистрации</title>
+    <style>
+        :root {
+            --primary: #6C63FF;
+            --secondary: #4D44DB;
+            --dark: #2A2A72;
+            --light: #F8F9FA;
+            --accent: #FF6584;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: var(--light);
+            color: #333;
+        }
+        
+        /* Шапка в стиле портфолио */
+        .auth-header {
+            background: linear-gradient(135deg, var(--dark) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 2rem;
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .auth-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .auth-header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 1.5rem;
+        }
+        
+        /* Основной контейнер */
+        .auth-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+        
+        /* Информационный блок */
+        .info-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .info-card h2 {
+            color: var(--dark);
+            font-size: 1.8rem;
+            margin-top: 0;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        
+        .info-card h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 4px;
+            background: var(--primary);
+        }
+        
+        .features-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .features-list li {
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        
+        .features-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+            font-weight: bold;
+        }
+        
+        /* Формы */
+        .form-container {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .tabs {
+            display: flex;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid #eee;
+        }
+        
+        .tab-btn {
+            padding: 0.5rem 1rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            color: var(--dark);
+            position: relative;
+        }
+        
+        .tab-btn.active {
+            color: var(--primary);
+        }
+        
+        .tab-btn.active::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--primary);
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;}
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 500;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            background: var(--secondary);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(108, 99, 255, 0.3);
+        }
+        
+        @media (max-width: 768px) {
+            .auth-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="container">
-        <div class="tabs">
-            <button class="tab-btn active" data-tab="login">Вход</button>
-            <button class="tab-btn" data-tab="register">Регистрация</button>
+    <!-- Шапка -->
+    <header class="auth-header">
+        <div class="header-content">
+            <h1>Добро пожаловать!</h1>
+            <p>Присоединяйтесь к нашему сообществу и получите доступ к эксклюзивным возможностям</p>
         </div>
-
-        <!-- Форма входа -->
-        <form id="login-form" class="tab-content active">
-            <div class="form-group">
-                <label for="login-email">Email</label>
-                <input type="email" id="login-email" required>
+    </header>
+    
+    <!-- Основной контент -->
+    <div class="auth-container">
+        <!-- Информационный блок -->
+        <div class="info-card">
+            <h2>О системе</h2>
+            <p>Наша система регистрации предоставляет безопасный и удобный способ управления вашим аккаунтом.</p>
+            
+            <h3>Преимущества:</h3>
+            <ul class="features-list">
+                <li>Быстрая регистрация в 2 клика</li>
+                <li>Надежное хранение данных</li>
+                <li>Простое управление профилем</li>
+                <li>Доступ к эксклюзивному контенту</li>
+                <li>Персонализированные рекомендации</li>
+            </ul>
+            
+            <h3>Технологии:</h3>
+            <p>Система построена на современных веб-технологиях с использованием HTML5, CSS3 и JavaScript.</p>
+        </div>
+        
+        <!-- Формы -->
+        <div class="form-container">
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="login">Вход</button>
+                <button class="tab-btn" data-tab="register">Регистрация</button>
             </div>
-            <div class="form-group">
-                <label for="login-password">Пароль</label>
-                <input type="password" id="login-password" required>
-            </div>
-            <button type="submit" class="btn">Войти</button>
-        </form>
-
-        <!-- Форма регистрации -->
-        <form id="register-form" class="tab-content">
-            <div class="form-group">
-                <label for="reg-username">Имя</label>
-                <input type="text" id="reg-username" required>
-            </div>
-            <div class="form-group">
-                <label for="reg-email">Email</label>
-                <input type="email" id="reg-email" required>
-            </div>
-            <div class="form-group">
-                <label for="reg-password">Пароль</label>
-                <input type="password" id="reg-password" required>
-            </div>
-            <button type="submit" class="btn">Зарегистрироваться</button>
-        </form>
-    </div>
-     <section id="works">
-            <div class="card-grid">
-                <div class="card">
-                    <img src="img\Registration.jpg" alt="Регистрация" class="card-img">
-                    <div class="card-content">
-                        <h3>Регистрация на сайте</h3>
-                        <div class="card-tags">
-                            <span class="tag">CSS</span>
-                            <span class="tag">HTML</span>
-                            <span class="tag">PHP</span>
-                        </div>
-                        <p>Проект с разработкой кода регистрации для сайта</p>
-                        <a href="https://github.com/Dikoshi/Registration" class="btn">Подробнее</a>
-                    </div>
-                  </div>
+            
+            <!-- Форма входа -->
+            <form id="login-form" class="tab-content active">
+                <div class="form-group">
+                    <label for="login-email">Email</label>
+                    <input type="email" id="login-email" required>
                 </div>
-        </section>
-
-    <script src="js/auth.js"></script>
+                <div class="form-group">
+                    <label for="login-password">Пароль</label>
+                    <input type="password" id="login-password" required>
+                </div>
+                <button type="submit" class="btn">Войти</button>
+            </form>
+            
+            <!-- Форма регистрации -->
+            <form id="register-form" class="tab-content">
+                <div class="form-group">
+                    <label for="reg-username">Имя пользователя</label>
+                    <input type="text" id="reg-username" required>
+                </div>
+                <div class="form-group">
+                    <label for="reg-email">Email</label>
+                    <input type="email" id="reg-email" required>
+                </div>
+                <div class="form-group">
+                    <label for="reg-password">Пароль</label>
+                    <input type="password" id="reg-password" required>
+                </div>
+                <button type="submit" class="btn">Зарегистрироваться</button>
+            </form>
+        </div>
+    </div>
     <script>
         // Переключение между вкладками
         document.querySelectorAll('.tab-btn').forEach(btn => {
@@ -72,6 +275,9 @@
                 document.getElementById(btn.dataset.tab + '-form').classList.add('active');
             });
         });
+        
+        // Логика регистрации/входа (из предыдущего примера)
+        // ...
     </script>
 </body>
 </html>
