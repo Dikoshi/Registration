@@ -32,7 +32,7 @@ registration-system-html/
 ### Структура файлов  
 copy
 
-
+```bash
 registration-system-php-json/
 ├── index.php           # Главная страница
 ├── register.php        # Обработчик регистрации
