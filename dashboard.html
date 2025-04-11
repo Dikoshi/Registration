@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Личный кабинет</title>
+    <style>
+        :root {
+            --primary: #6c63ff;
+            --secondary: #4d44db;
+            --dark: #2a2a72;
+            --light: #f8f9fa;
+            --accent: #ff6584;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: var(--light);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .dashboard-container {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 500px;
+            text-align: center;
+        }
+        .user-info {
+            margin: 1.5rem 0;
+            padding: 1rem;
+            background: rgba(108, 99, 255, 0.1);
+            border-radius: 5px;
+        }
+        .btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 1rem;
+        }
+        .btn:hover {
+            background-color: var(--secondary);
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <h1>Личный кабинет</h1>
+        
+        <div class="user-info">
+            <!-- Здесь будет отображаться email -->
+            <p id="user-email">Загрузка данных...</p>
+        </div>
+
+        <a href="index.html" class="btn">Выйти</a>
+    </div>
+
+    <script>
+        // Получаем данные пользователя из localStorage
+        const userData = localStorage.getItem('currentUser');
+        
+        if (!userData) {
+            // Если пользователь не авторизован, перенаправляем на страницу входа
+            window.location.href = 'index.html';
+        } else {
+            // Парсим данные и отображаем email
+            const user = JSON.parse(userData);
+            document.getElementById('user-email').textContent = `Ваш email: ${user.email}`;
+        }
+
+        // Обработчик выхода
+        document.querySelector('.btn').addEventListener('click', () => {
+            localStorage.removeItem('currentUser');
+        });
+    </script>
+</body>
+</html>
