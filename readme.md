@@ -17,7 +17,7 @@ registration-system-html/
 │   └── auth.js         # Логика авторизации
 └── css/
     └── style.css       # Стили
-bash```
+```bash
 ### Как использовать  
 1. Скачайте папку registration-system-html.  
 2. Откройте index.html в браузере через Live Server (VS Code) или напрямую.  
