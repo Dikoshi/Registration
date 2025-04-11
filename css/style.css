@@ -126,7 +126,7 @@ input {
         .card-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 2rem;
+            gap: 3rem;
             margin-top: 2rem;
         }
         
@@ -196,17 +196,7 @@ input {
             position: relative;
             display: inline-block;
         }
-        
-        h2::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 0;
-            width: 50px;
-            height: 4px;
-            background: var(--primary);
-            border-radius: 2px;
-        }
+    
 
 .btn-danger:hover {
     background-color: #e04e6d;
